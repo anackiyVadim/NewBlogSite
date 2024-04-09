@@ -1,0 +1,31 @@
+{% if user.is_authenticated %}
+<style>
+    .tre{
+        display: flex;
+        align-items: center;
+    }
+</style>
+<div class="nav-form navbar-right">
+    <a href="{% url 'blog_logout' %}" class="btn btn-danger">Logout</a>
+</div>
+<ul class="nav navbar-nav navbar-right tre">
+    <li class="">
+        <img class="media-object" src="{{ user.profile.avatar.url }}" alt="" height="50px" max-width="80px">
+    </li>
+    <li class="">
+        <a href="{% url 'profile' user=user.username %}" class="">Hello {{user}}</a>
+    </li>
+</ul>
+{% else %}
+<form action="{% url 'blog_login' %}" method="post" class="navbar-form navbar-right" role="form">
+    {% csrf_token %}
+    <div class="form-group">
+        <input type="text" name="username" placeholder="User" class="form-control">
+    </div>
+    <div class="form-group">
+        <input type="password" name="password" placeholder="Password" class="form-control">
+    </div>
+    <button type="submit" class="btn btn-success">Sing in</button>
+    <a href="{% url 'registration_user' %}" class="btn btn-success">Register</a>
+</form>
+{% endif %}

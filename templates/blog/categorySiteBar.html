@@ -1,0 +1,16 @@
+<div class="col-lg-6">
+    <ul class="list-unstyled">
+        {% for categoryName in cats1 %}
+        <li><a href="{% url 'category' name=categoryName.name %}">{{ categoryName.name }}</a>
+        </li>
+        {% endfor %}
+    </ul>
+</div>
+<div class="col-lg-6">
+    <ul class="list-unstyled">
+        {% for categoryName in cats2 %}
+        <li><a href="{% url 'category' name=categoryName.name %}">{{ categoryName.name }}</a>
+        </li>
+        {% endfor %}
+    </ul>
+</div>

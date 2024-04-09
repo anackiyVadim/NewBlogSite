@@ -1,0 +1,48 @@
+{% extends "blog/base.html"%}
+{% block content%}
+
+<!--<h1 class="page-header">-->
+<!--    Page Heading-->
+<!--    <small>Secondary Text</small>-->
+<!--</h1>-->
+
+<!--<h2>-->
+<!--    <a href="post">{{newPost.title}}</a>-->
+<!--</h2>-->
+<!--<p class="lead">-->
+<!--    by {{newPost.user}}-->
+<!--</p>-->
+<!--<p><span class="glyphicon glyphicon-time"></span>{{ newPost.published_date }}</p>-->
+<!--<hr>-->
+<!--<img class="img-responsive" src="http://placehold.it/900x300" alt="">-->
+<!--<hr>-->
+<!--<p>{{ newPost.content }}</p>-->
+<!--<a class="btn btn-primary" href="post">Read More <span class="glyphicon glyphicon-chevron-right"></span></a>-->
+
+<!--<hr>-->
+
+
+{% for post in posts %}
+<!-- First Blog Post -->
+<h2>
+    <a href="{% url 'post' title=post.title %}">{{post.title}}</a>
+</h2>
+<p class="lead">
+    by {{post.user.first_name}}
+    <br>
+    {% for teg in post.links.all %}
+        Тег - {{teg.name_tags}}
+    {% endfor %}
+</p>
+<p><span class="glyphicon glyphicon-time"></span>{{ post.published_date }}</p>
+<hr>
+<img class="img-responsive" src="{{ post.image }}" alt="">
+<hr>
+<p>{{ post.content }}</p>
+<a class="btn btn-primary" href="{% url 'post' title=post.title %}">Read More <span class="glyphicon glyphicon-chevron-right"></span></a>
+
+<hr>
+{% endfor %}
+
+{% include "blog/pagination.html" with page=posts %}
+{% endblock %}

@@ -1,0 +1,25 @@
+{% extends "blog/base.html"%}
+{% block content%}
+<style>
+    .og{
+        width: 100px;
+    }
+</style>
+<h4>Аватар:</h4>
+<img class="media-object og" src="{{ users.profile.avatar.url }}" alt="">
+<h4>Никнейм: {{ users.username }}</h4>
+<h4>Имя: {{ users.first_name }}</h4>
+<h4>Фамилия: {{ users.last_name }}</h4>
+<h4>Почта: {{ users.email }}</h4>
+<h4>О себе: {{ users.profile.bio }}</h4>
+<h4>Дата рождения: {{ users.profile.date_of_birth }}</h4>
+<h4>Последний вход: {{ users.last_login }}</h4>
+<h4>Дата регистрации: {{ users.date_joined }}</h4>
+<br>
+{% if users.username == user.username %}
+<hr>
+<a href="{% url 'update_profile' %}">Изменить данные в профиле</a>
+<hr>
+{% endif %}
+
+{% endblock %}
